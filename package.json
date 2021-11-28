@@ -1,0 +1,19 @@
+{
+  "name": "vue2.x-webpack4.x",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Potter <75838259@qq.com>",
+  "license": "MIT",
+  "dependencies": {
+    "vue": "2.5.17"
+  },
+  "devDependencies": {
+    "url-loader": "^1.1.1",
+    "vue-style-loader": "^3.0.1",
+    "vue-template-compiler": "^2.5.17",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.4.0",
+    "webpack-merge": "^4.1.4"
+  }
+}
