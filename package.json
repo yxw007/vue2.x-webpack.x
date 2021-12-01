@@ -2,18 +2,33 @@
   "name": "vue2.x-webpack4.x",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "Potter <75838259@qq.com>",
+  "author": "Potter <aa4790139@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "dev": "webpack-dev-server --progress --config build/webpack.dev.conf.js",
+    "build": "cross-env node build/build.js ENV_TYPE=1 platform=pc"
+  },
   "dependencies": {
-    "vue": "2.5.17"
+    "core-js": "^3.19.1",
+    "vue": "2.5.17",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
+    "babel-loader": "^8.0.0",
+    "babel-plugin-syntax-dynamic-import": "6.18.0",
+    "clean-webpack-plugin": "^4.0.0",
+    "vue-loader": "^15.5.1",
     "url-loader": "^1.1.1",
     "vue-style-loader": "^3.0.1",
     "vue-template-compiler": "^2.5.17",
     "webpack": "^4.44.2",
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.4.0",
-    "webpack-merge": "^4.1.4"
+    "webpack-merge": "^4.1.4",
+    "html-webpack-plugin": "^3.2.0",
+    "cross-env": "^5.2.0"
   }
 }
