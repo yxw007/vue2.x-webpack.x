@@ -1,3 +1,4 @@
+const path = require("path");
 module.exports = {
   dev: {
     assetsSubDirectory: "static",
@@ -8,7 +9,7 @@ module.exports = {
   },
   build: {
     assetsSubDirectory: "static",
-    assetsPublicPath: `/dist/`,
+    assetsPublicPath: path.resolve(__dirname, "../dist/"),
     devtool: "#source-map",
   },
 };

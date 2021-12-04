@@ -1,26 +1,16 @@
-const path = require("path");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
-const config = require("../config");
-
-function resolve(dir) {
-  return path.join(__dirname, "..", dir);
-}
-
-function assetsPath(subPath) {
-  const assetsSubDirectory = process.env.NODE_ENV === "production" ? config.build.assetsSubDirectory : config.dev.assetsSubDirectory;
-  return path.posix.join(assetsSubDirectory, subPath);
-}
+const utils = require("./utils");
 
 module.exports = {
-  entry: ["./src/main.js"],
+  entry: utils.resolve("src/main.js"),
   output: {
-    filename: assetsPath("js/[name].js"),
+    filename: utils.assetsPath("js/[name].js"),
   },
   resolve: {
     extensions: [".js", ".vue", ".json"],
     alias: {
       vue$: "vue/dist/vue.esm.js",
-      "@": resolve("src"),
+      "@": utils.resolve("src"),
     },
   },
   module: {
@@ -32,7 +22,7 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        include: [resolve("src"), resolve("node_modules/webpack-dev-server/client")],
+        include: [utils.resolve("src"), utils.resolve("node_modules/webpack-dev-server/client")],
         use: [
           {
             loader: "babel-loader?cacheDirectory=true",
@@ -53,16 +43,16 @@ module.exports = {
       {
         test: /\.svg$/,
         loader: "svg-sprite-loader",
-        include: [resolve("src/icons")],
+        include: [utils.resolve("src/icons")],
         options: { symbolId: "icon-[name]" },
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: "url-loader",
-        exclude: [resolve("src/icons")],
+        exclude: [utils.resolve("src/icons")],
         options: {
           limit: 10000,
-          name: assetsPath("img/[name].[hash:7].[ext]"),
+          name: utils.assetsPath("img/[name].[hash:7].[ext]"),
         },
       },
       {
@@ -70,7 +60,7 @@ module.exports = {
         loader: "url-loader",
         options: {
           limit: 10000,
-          name: assetsPath("media/[name].[hash:7].[ext]"),
+          name: utils.assetsPath("media/[name].[hash:7].[ext]"),
         },
       },
       {
@@ -80,7 +70,7 @@ module.exports = {
             loader: "url-loader",
             options: {
               limit: 10000,
-              name: assetsPath("fonts/[name].[hash:7].[ext]"),
+              name: utils.assetsPath("fonts/[name].[hash:7].[ext]"),
             },
           },
         ],

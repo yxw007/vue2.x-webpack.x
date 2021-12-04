@@ -1,18 +1,12 @@
-const path = require("path");
 const webpack = require("webpack");
 const merge = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const baseWebpackConfig = require("./webpack.base.conf");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const env = require("../config/prod.env");
+const env = require("../config/env.prod");
 const config = require("../config");
 const utils = require("./utils");
-
-function resolveResouce(name) {
-  let fullpath = path.resolve(__dirname, "../src/style/" + name);
-  return fullpath;
-}
 
 module.exports = merge(baseWebpackConfig, {
   mode: "production",
@@ -43,7 +37,7 @@ module.exports = merge(baseWebpackConfig, {
           {
             loader: "sass-resources-loader",
             options: {
-              resources: [resolveResouce("variables.scss")],
+              resources: [utils.resolve("src/style/variables.scss")],
             },
           },
         ],
@@ -56,9 +50,7 @@ module.exports = merge(baseWebpackConfig, {
   },
   plugins: [
     new webpack.DefinePlugin({
-      "process.env": {
-        NODE_ENV: "product",
-      },
+      "process.env": env,
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({

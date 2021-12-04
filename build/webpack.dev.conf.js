@@ -4,15 +4,8 @@ const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const baseWebpackConfig = require("./webpack.base.conf");
 const config = require("../config");
-
-function resolve(dir) {
-  return path.join(__dirname, "..", dir);
-}
-
-function resolveResouce(name) {
-  let fullpath = path.resolve(__dirname, "../src/style/" + name);
-  return fullpath;
-}
+const env = require("../config/env.dev");
+const utils = require("./utils");
 
 module.exports = merge(baseWebpackConfig, {
   mode: "development",
@@ -62,7 +55,7 @@ module.exports = merge(baseWebpackConfig, {
           {
             loader: "sass-resources-loader",
             options: {
-              resources: [resolveResouce("variables.scss")],
+              resources: [utils.resolve("src/style/variables.scss")],
             },
           },
         ],
@@ -76,11 +69,11 @@ module.exports = merge(baseWebpackConfig, {
   stats: { children: false },
   plugins: [
     new webpack.DefinePlugin({
-      "process.env": { NODE_ENV: "development" },
+      "process.env": env,
     }),
     new HtmlWebpackPlugin({
       filename: "index.html",
-      template: resolve(__dirname, `../public/index.html`),
+      template: utils.resolve(`public/index.html`),
       inject: true,
     }),
   ],
