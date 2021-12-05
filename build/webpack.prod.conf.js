@@ -58,8 +58,8 @@ module.exports = merge(baseWebpackConfig, {
       ignoreOrder: true,
     }),
     new HtmlWebpackPlugin({
-      filename: config.build.index,
-      template: config.htmlTempletePath,
+      filename: "index.html",
+      template: utils.resolve(`public/index.html`),
     }),
   ],
   performance: {
