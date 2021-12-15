@@ -51,7 +51,15 @@ module.exports = merge(baseWebpackConfig, {
           "vue-style-loader",
           "css-loader",
           "postcss-loader",
-          "sass-loader",
+          {
+            loader: "sass-loader",
+            options: {
+              implementation: require("sass"),
+              sassOptions: {
+                indentedSyntax: false, 
+              },
+            },
+          },
           {
             loader: "sass-resources-loader",
             options: {
