@@ -1,0 +1,36 @@
+/**
+* 创建日期: 2021-08-11
+* 文件名称：variables.scss
+* 创建作者：Potter
+* 开发版本：1.0.0
+* 相关说明：
+*/
+
+//-------------------------------------------------------------------------
+// Mobile 模式下页面最大宽 
+$xxl-max-body-width: 768px;
+// Mobile 模式下的内容宽度 
+$xxl-max-body-width-center: calc(#{$xxl-max-body-width} - 40px);
+
+// PC 模式下小屏的宽度断点 
+$xxl-page-min-width: 1000px;
+// PC 小屏模式下的内容宽度 
+$xxl-page-min-width-center: calc(#{$xxl-page-min-width} - 40px);
+
+// PC 模式下大屏的宽度断点 
+$xxl-page-max-width: 1740px;
+// PC 大屏模式下的内容宽度 
+$xxl-page-max-width-center: calc(#{$xxl-page-max-width} - 40px);
+//-------------------------------------------------------------------------
+$baseColor: #007DFF;
+$nb-height: 64px;
+
+:export {
+  xxl-max-body-width-center: $xxl-max-body-width-center;
+
+  xxl-page-min-width: $xxl-page-min-width;
+  xxl-page-min-width-center: $xxl-page-min-width-center;
+
+  xxl-page-max-width: $xxl-page-max-width;
+  xxl-page-max-width-center: $xxl-page-max-width-center;
+}
