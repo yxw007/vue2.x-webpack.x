@@ -5,6 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "dev": "webpack --config build/webpack.dev.conf.js",
+    "debug": "webpack --config build/webpack.debug.conf.js",
     "build": "webpack --config build/webpack.prod.conf.js"
   },
   "keywords": [],

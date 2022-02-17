@@ -24,13 +24,12 @@ threadLoader.warmup(
 ); */
 
 const resolve = (dir) => path.join(__dirname, dir);
-const outputDir = resolve("../dist/build");
 
 const wrapConfig = smp.wrap({
   mode: "production",
   entry: path.resolve(__dirname, "../src/main.js"),
   output: {
-    path: path.resolve(__dirname, "../dist/build"),
+    path: path.resolve(__dirname, "../dist/debug"),
     filename: "[name].[chunkhash].js",
     chunkFilename: "[id].[chunkhash].js",
   },
@@ -41,7 +40,7 @@ const wrapConfig = smp.wrap({
       "@": resolve("src"),
     },
   },
-  devtool: false,
+  devtool: "source-map",
   optimization: {
     minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
   },
@@ -82,13 +81,17 @@ const wrapConfig = smp.wrap({
       filename: "index.html",
       template: resolve("../public/index.html"),
     }),
+    new webpack.SourceMapDevToolPlugin({
+      filename: "../debug/sourcemaps/[name].[contenthash].js.map",
+      exclude: ["vendor.js"],
+    }),
   ],
 });
 
 wrapConfig.plugins.push(
   new VueLoaderPlugin(),
   new MiniCssExtractPlugin({
-    filename: "../build/css/[name].[contenthash].css",
+    filename: "../debug/css/[name].[contenthash].css",
     ignoreOrder: true,
   })
 );
