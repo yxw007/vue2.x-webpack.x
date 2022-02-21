@@ -8,12 +8,15 @@ const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const SpriteLoaderPlugin = require("svg-sprite-loader/plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
 const smp = new SpeedMeasurePlugin();
 
 const env = require("../config/env.prod");
 const config = require("../config");
 const utils = require("./utils");
+const mode = process.argv.includes("mode=development") ? "development" : "production";
+const isShowAnalyzer = process.argv.includes("--bundle-analyzer");
 
 //说明：由于thread-loader当前引用的最新版本相关接口未与最新webpack版本接口兼容，所以暂时先关闭
 //问题：https://github.com/webpack-contrib/thread-loader/issues/135
@@ -33,7 +36,7 @@ threadLoader.warmup(
 
 const wrapConfig = smp.wrap(
   merge(baseWebpackConfig, {
-    mode: "production",
+    mode,
     output: {
       path: config.build.assetsRoot,
       filename: utils.assetsPath("js/[name].[chunkhash].js"),
@@ -43,7 +46,9 @@ const wrapConfig = smp.wrap(
     devtool: config.build.devtool,
     optimization: {
       minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
+      usedExports: true,
     },
+    // sideEffects: ["*.css"],
     module: {
       rules: [
         {
@@ -115,5 +120,9 @@ wrapConfig.plugins.push(
     ignoreOrder: true,
   })
 );
+
+if (isShowAnalyzer) {
+  wrapConfig.plugins.push(new BundleAnalyzerPlugin());
+}
 
 module.exports = wrapConfig;

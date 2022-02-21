@@ -18,6 +18,19 @@
             "type": "pwa-node"
         },
         {
+            "name": "Debugger Build",
+            "request": "launch",
+            "runtimeArgs": [
+                "run",
+                "dev:build"
+            ],
+            "runtimeExecutable": "npm",
+            "skipFiles": [
+                // "<node_internals>/**"
+            ],
+            "type": "pwa-node"
+        },
+        {
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
