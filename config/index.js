@@ -10,7 +10,7 @@ module.exports = {
   build: {
     assetsSubDirectory: "static",
     assetsRoot: path.resolve(__dirname, "../dist"),
-    assetsPublicPath: path.resolve(__dirname, "../dist/"),
+    assetsPublicPath: "/",
     devtool: false,
   },
 };
