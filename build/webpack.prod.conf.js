@@ -11,6 +11,7 @@ const TerserPlugin = require("terser-webpack-plugin");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
 const smp = new SpeedMeasurePlugin();
+const AutoExternalPlugin = require("../plugins/auto-external-plugin");
 
 const env = require("../config/env.prod");
 const config = require("../config");
@@ -98,6 +99,7 @@ const wrapConfig = smp.wrap(
         filename: "index.html",
         template: utils.resolve(`public/index.html`),
       }),
+      new AutoExternalPlugin(config.build.externalLibs),
     ],
     performance: {
       hints: false,

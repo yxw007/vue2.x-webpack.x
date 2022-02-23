@@ -4,6 +4,7 @@ const webpack = require("webpack");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const SpriteLoaderPlugin = require("svg-sprite-loader/plugin");
+const AutoExternalPlugin = require("../plugins/auto-external-plugin");
 
 const baseWebpackConfig = require("./webpack.base.conf");
 const config = require("../config");
@@ -90,5 +91,6 @@ module.exports = merge(baseWebpackConfig, {
       template: utils.resolve(`public/index.html`),
       inject: true,
     }),
+    new AutoExternalPlugin(config.dev.externalLibs),
   ],
 });

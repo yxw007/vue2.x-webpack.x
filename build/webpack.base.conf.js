@@ -35,11 +35,22 @@ module.exports = {
                 [
                   "@babel/preset-env",
                   {
-                    useBuiltIns: false,
+                    useBuiltIns: "usage",
+                    corejs: { version: 3 },
                   },
                 ],
               ],
-              plugins: ["babel-plugin-syntax-dynamic-import"],
+              plugins: [
+                [
+                  "@babel/plugin-transform-runtime",
+                  {
+                    corejs: false,
+                    helpers: true,
+                    regenerator: false,
+                  },
+                ],
+                "babel-plugin-syntax-dynamic-import",
+              ],
             },
           },
         ],
