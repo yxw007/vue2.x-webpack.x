@@ -4,8 +4,18 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 class AutoExternalPlugin {
   constructor(options) {
     this.options = options;
-    this.externalModules = Object.keys(this.options);
+    this.externalModules = [];
+    this.externalCSSModules = [];
+    Object.keys(this.options).forEach((key) => {
+      let value = this.options[key];
+      if (value.isCSSModule) {
+        this.externalCSSModules.push(key);
+      } else {
+        this.externalModules.push(key);
+      }
+    });
     this.importedModules = new Set();
+    this.importedCSSModules = new Set();
   }
   apply(compiler) {
     compiler.hooks.normalModuleFactory.tap("AutoExternalPlugin", (normalModuleFactory) => {
@@ -35,14 +45,27 @@ class AutoExternalPlugin {
     });
     compiler.hooks.compilation.tap("AutoExternalPlugin", (compilation) => {
       HtmlWebpackPlugin.getHooks(compilation).alterAssetTags.tapAsync("AutoExternalPlugin", (htmlData, callback) => {
+        let scripts = [];
         [...this.importedModules].forEach((key) => {
-          htmlData.assetTags.scripts.unshift({
+          scripts.push({
             tagName: "script",
             voidTag: false,
             meta: { plugin: "html-webpack-plugin" },
             attributes: { src: this.options[key].url },
           });
         });
+        htmlData.assetTags.scripts = [...scripts, ...htmlData.assetTags.scripts];
+
+        let styles = [];
+        [...this.externalCSSModules].forEach((key) => {
+          styles.push({
+            tagName: "link",
+            voidTag: false,
+            meta: { plugin: "html-webpack-plugin" },
+            attributes: { rel: "stylesheet", href: this.options[key].url },
+          });
+        });
+        htmlData.assetTags.styles = [...styles, ...htmlData.assetTags.styles];
         callback(null, htmlData);
       });
     });

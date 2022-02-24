@@ -2,6 +2,7 @@ const path = require("path");
 
 function getExternalLibs(isMin) {
   let extension = isMin ? ".min.js" : ".js";
+  let cssExtension = isMin ? ".min.css" : ".css";
   return {
     vue: {
       globalVariable: "Vue",
@@ -14,6 +15,14 @@ function getExternalLibs(isMin) {
     vuex: {
       globalVariable: "Vuex",
       url: `https://cdn.jsdelivr.net/npm/vuex@3.0.1/dist/vuex${extension}`,
+    },
+    "element-ui": {
+      globalVariable: "Element",
+      url: `https:///unpkg.com/element-ui/lib/index${extension}`,
+    },
+    "element-ui/lib/theme-chalk/index.css": {
+      isCSSModule: true,
+      url: `https://unpkg.com/element-ui/lib/theme-chalk/index${cssExtension}`,
     },
   };
 }
