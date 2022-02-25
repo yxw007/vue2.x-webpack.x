@@ -47,12 +47,19 @@ class AutoExternalPlugin {
       HtmlWebpackPlugin.getHooks(compilation).alterAssetTags.tapAsync("AutoExternalPlugin", (htmlData, callback) => {
         let scripts = [];
         [...this.importedModules].forEach((key) => {
-          scripts.push({
-            tagName: "script",
-            voidTag: false,
-            meta: { plugin: "html-webpack-plugin" },
-            attributes: { src: this.options[key].url },
-          });
+          let { url, integrity, position = "head", async = false } = this.options[key];
+          if (position === "head") {
+            let commonAttri = { src: url };
+            if (async) {
+              commonAttri["async"] = async;
+            }
+            scripts.push({
+              tagName: "script",
+              voidTag: false,
+              meta: { plugin: "html-webpack-plugin" },
+              attributes: !!integrity ? Object.assign({ integrity, crossorigin: "anonymous" }, commonAttri) : commonAttri,
+            });
+          }
         });
         htmlData.assetTags.scripts = [...scripts, ...htmlData.assetTags.scripts];
 
@@ -66,6 +73,27 @@ class AutoExternalPlugin {
           });
         });
         htmlData.assetTags.styles = [...styles, ...htmlData.assetTags.styles];
+        callback(null, htmlData);
+      });
+
+      HtmlWebpackPlugin.getHooks(compilation).alterAssetTagGroups.tapAsync("AutoExternalPlugin", (htmlData, callback) => {
+        let scripts = [];
+        [...this.importedModules].forEach((key) => {
+          let { url, integrity, position, async = false } = this.options[key];
+          if (position === "body") {
+            let commonAttri = { src: url, defer: true };
+            if (async) {
+              commonAttri["async"] = async;
+            }
+            scripts.push({
+              tagName: "script",
+              voidTag: false,
+              meta: { plugin: "html-webpack-plugin" },
+              attributes: !!integrity ? Object.assign({ integrity, crossorigin: "anonymous" }, commonAttri) : commonAttri,
+            });
+          }
+        });
+        htmlData.bodyTags = [...scripts, ...htmlData.bodyTags];
         callback(null, htmlData);
       });
     });
