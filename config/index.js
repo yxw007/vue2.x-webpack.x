@@ -18,11 +18,11 @@ function getExternalLibs(isMin) {
     },
     "element-ui": {
       globalVariable: "Element",
-      url: `https:///unpkg.com/element-ui/lib/index${extension}`,
+      url: `https://unpkg.com/element-ui/lib/index.js`,
     },
     "element-ui/lib/theme-chalk/index.css": {
       isCSSModule: true,
-      url: `https://unpkg.com/element-ui/lib/theme-chalk/index${cssExtension}`,
+      url: `https://unpkg.com/element-ui/lib/theme-chalk/index.css`,
     },
   };
 }
