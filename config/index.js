@@ -24,13 +24,13 @@ function getExternalLibs(isMin) {
     },
     "element-ui": {
       globalVariable: "Element",
-      url: `https://unpkg.com/element-ui/lib/index.js`,
+      url: `https://unpkg.com/element-ui@2.15.6/lib/index.js`,
       position: "body",
-      async: false,
+      async: true,
     },
     "element-ui/lib/theme-chalk/index.css": {
       isCSSModule: true,
-      url: `https://unpkg.com/element-ui/lib/theme-chalk/index.css`,
+      url: `https://unpkg.com/element-ui@2.15.6/lib/theme-chalk/index.css`,
     },
   };
 }
