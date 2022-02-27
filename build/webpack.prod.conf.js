@@ -11,7 +11,7 @@ const TerserPlugin = require("terser-webpack-plugin");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
 const smp = new SpeedMeasurePlugin();
-const AutoExternalPlugin = require("../plugins/auto-external-plugin");
+const HtmlDynamicInjectionPlugin = require("../plugins/html-dynamic-injection");
 
 const env = require("../config/env.prod");
 const config = require("../config");
@@ -98,7 +98,7 @@ let webpackConfig = merge(baseWebpackConfig, {
       filename: "index.html",
       template: utils.resolve(`public/index.html`),
     }),
-    new AutoExternalPlugin(config.build.externalLibs),
+    new HtmlDynamicInjectionPlugin(config.build.externalLibs),
   ],
   performance: {
     hints: false,
