@@ -37,9 +37,15 @@ module.exports = {
                   {
                     useBuiltIns: "usage",
                     corejs: { version: 3 },
+                    targets: {
+                      browsers: ["> 1%", "last 2 versions", "ie >= 11"],
+                    },
+                    modules: false,
                   },
                 ],
               ],
+              sourceType: "unambiguous",
+              ignore: [/[\/\\]core-js/, /@babel[\/\\]runtime/],
               plugins: [
                 [
                   "@babel/plugin-transform-runtime",
@@ -49,6 +55,13 @@ module.exports = {
                     regenerator: false,
                   },
                 ],
+                /* [
+                  "component",
+                  {
+                    libraryName: "element-ui",
+                    styleLibraryName: "theme-chalk",
+                  },
+                ], */
                 "babel-plugin-syntax-dynamic-import",
               ],
             },

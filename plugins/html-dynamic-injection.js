@@ -60,11 +60,12 @@ class HtmlDynamicInjectionPlugin {
       });
     });
 
-    compiler.hooks.compilation.tap("AutoExternalPlugin", (compilation) => {
+    compiler.hooks.compilation.tap(this.name, (compilation) => {
       HtmlWebpackPlugin.getHooks(compilation).alterAssetTagGroups.tapAsync(this.name, (htmlData, callback) => {
         let linkTags = [];
         this.links.forEach((item) => {
-          let tag = this.generateLinkTag(item);
+          let { importName, ...fields } = item;
+          let tag = this.generateLinkTag(fields);
           if (tag) {
             tag.attributes = this.filterInvalidFields(tag.attributes);
             linkTags.push(tag);
@@ -75,7 +76,8 @@ class HtmlDynamicInjectionPlugin {
         let scriptBodyTags = [];
         this.importScriptKeys.forEach((key) => {
           if (this.scriptKeys.includes(key)) {
-            let tag = this.generateScriptTag(this.scripts[key]);
+            let { globalVariableName, ...fields } = this.scripts[key];
+            let tag = this.generateScriptTag(fields);
             if (tag) {
               tag.attributes = this.filterInvalidFields(tag.attributes);
               let { position } = tag.attributes;
@@ -114,7 +116,7 @@ class HtmlDynamicInjectionPlugin {
 
     return {
       tagName: "link",
-      voidTag: false,
+      voidTag: true,
       meta: { plugin: "html-webpack-plugin" },
       attributes: Object.assign(
         {

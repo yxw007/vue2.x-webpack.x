@@ -10,7 +10,6 @@ function getExternalLibs(isMin) {
         globalVariableName: "Vue",
         position: "head",
         src: `https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue${extension}`,
-        // integrity: "sha256-kXTEJcRFN330VirZFl6gj9+UM6gIKW195fYZeR3xDhc=",
         async: false,
       },
       {
@@ -18,7 +17,6 @@ function getExternalLibs(isMin) {
         globalVariableName: "VueRouter",
         position: "head",
         src: `https://cdn.jsdelivr.net/npm/vue-router@3.0.1/dist/vue-router${extension}`,
-        // integrity: "sha256-yEB9jUlD51i5kxJZlzgzfR6XmVKI76Nl1WRA1aqIilU=",
         async: false,
       },
       {
@@ -26,7 +24,6 @@ function getExternalLibs(isMin) {
         globalVariableName: "Vuex",
         position: "head",
         src: `https://cdn.jsdelivr.net/npm/vuex@3.0.1/dist/vuex${extension}`,
-        // integrity: "sha256-1QlN0ckC4jlz91DZixPZxTv9vYpcBmS7sK7HA8xFmFA=",
         async: false,
       },
       {
@@ -37,9 +34,16 @@ function getExternalLibs(isMin) {
         defer: "defer",
         async: true,
         importance: "low",
+        crossorigin: null,
       },
     ],
     links: [
+      /*  {
+        importName: "element-ui/lib/theme-chalk/index.css",
+        ref: "stylesheet",
+        href: `https://unpkg.com/element-ui@2.15.6/lib/theme-chalk/index.css`,
+        crossorigin: null,
+      }, */
       {
         rel: "dns-prefetch",
         href: "https://unpkg.com",
@@ -49,11 +53,6 @@ function getExternalLibs(isMin) {
         rel: "dns-prefetch",
         href: "https://cdn.jsdelivr.net",
         crossorigin: null,
-      },
-      {
-        importName: "element-ui/lib/theme-chalk/index.css",
-        href: `https://unpkg.com/element-ui@2.15.6/lib/theme-chalk/index.css`,
-        ref: "stylesheet",
       },
     ],
   };

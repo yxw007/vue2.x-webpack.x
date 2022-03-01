@@ -2,8 +2,7 @@ import Vue from "vue";
 import App from "./App";
 import router from "./router";
 import store from "./store";
-import Element from "element-ui";
-console.log(Element);
+import "element-ui";
 
 export default new Vue({
   el: "#app",
