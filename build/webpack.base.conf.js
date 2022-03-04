@@ -20,11 +20,11 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.vue$/,
+        test: /.vue$/,
         loader: "vue-loader",
       },
       {
-        test: /\.js$/,
+        test: /.js$/,
         exclude: /node_modules/,
         include: [utils.resolve("src"), utils.resolve("node_modules/webpack-dev-server/client")],
         use: [
@@ -45,7 +45,7 @@ module.exports = {
                 ],
               ],
               sourceType: "unambiguous",
-              ignore: [/[\/\\]core-js/, /@babel[\/\\]runtime/],
+              ignore: [/[/\\]core-js/, /@babel[/\\]runtime/],
               plugins: [
                 [
                   "@babel/plugin-transform-runtime",
@@ -69,7 +69,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.html$/i,
+        test: /.html$/i,
         use: [
           {
             loader: "html-loader",
@@ -77,7 +77,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.svg$/,
+        test: /.svg$/,
         include: [utils.resolve("src/assets/font")],
         loader: "svg-sprite-loader",
         generator: {
@@ -85,21 +85,21 @@ module.exports = {
         },
       },
       {
-        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        test: /.(png|jpe?g|gif|svg)(\?.*)?$/,
         type: "asset/resource",
         generator: {
           filename: utils.assetsPath("img/[name].[hash:7].[ext]"),
         },
       },
       {
-        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+        test: /.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
         type: "asset/resource",
         generator: {
           filename: utils.assetsPath("media/[name].[hash:7].[ext]"),
         },
       },
       {
-        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        test: /.(woff2?|eot|ttf|otf)(\?.*)?$/,
         type: "asset/resource",
         generator: {
           filename: utils.assetsPath("fonts/[name].[hash:7].[ext]"),

@@ -1,14 +1,10 @@
-"use strict";
 const chalk = require("chalk");
 const semver = require("semver");
 const packageConfig = require("../package.json");
 const shell = require("shelljs");
 
 function exec(cmd) {
-  return require("child_process")
-    .execSync(cmd)
-    .toString()
-    .trim();
+  return require("child_process").execSync(cmd).toString().trim();
 }
 
 const versionRequirements = [
@@ -27,7 +23,7 @@ if (shell.which("npm")) {
   });
 }
 
-module.exports = function() {
+module.exports = function () {
   const warnings = [];
 
   for (let i = 0; i < versionRequirements.length; i++) {
