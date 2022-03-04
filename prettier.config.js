@@ -34,10 +34,9 @@ module.exports = {
   // HTML空白敏感性 default:"css"
   htmlWhitespaceSensitivity: "strict",
   // 在 *.vue 文件中 Script 和 Style 标签内的代码是否缩进 default:false
-  vueIndentScriptAndStyle: true,
-  // 末尾换行符 default:"lf"
-  endOfLine: "lf",
-  // default:"auto"
+  vueIndentScriptAndStyle: false,
+  // 末尾换行符 default:"auto"
+  endOfLine: "auto",
   embeddedLanguageFormatting: "auto",
   overrides: [
     {
