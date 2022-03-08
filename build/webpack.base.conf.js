@@ -79,13 +79,18 @@ module.exports = {
       {
         test: /.svg$/,
         include: [utils.resolve("src/assets/font")],
+        exclude: [/ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/],
         loader: "svg-sprite-loader",
         generator: {
           filename: utils.assetsPath("fonts/[name].[hash:7].[ext]"),
         },
       },
       {
-        test: /.(png|jpe?g|gif|svg)(\?.*)?$/,
+        test: /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/,
+        type: "asset/source",
+      },
+      {
+        test: /.(png|jpe?g|gif)(\?.*)?$/,
         type: "asset/resource",
         generator: {
           filename: utils.assetsPath("img/[name].[hash:7].[ext]"),
