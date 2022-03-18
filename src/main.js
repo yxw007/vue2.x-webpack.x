@@ -5,8 +5,8 @@ import store from "./store";
 import "element-ui";
 
 export default new Vue({
-  el: "#app",
-  router,
-  store,
-  render: (h) => h(App),
+	el: "#app",
+	router,
+	store,
+	render: (h) => h(App),
 });

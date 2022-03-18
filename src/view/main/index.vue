@@ -1,10 +1,10 @@
 <template>
-  <div>this is Main Page</div>
+	<div>this is Main Page</div>
 </template>
 
 <script>
 export default {
-  name: "Index",
+	name: "Index",
 };
 </script>
 

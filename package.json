@@ -11,8 +11,10 @@
     "dev:build": "cross-env node build/index.js ENV_TYPE=1 platform=pc mode=development",
     "test": "webpack --config build/webpack.prod.conf.js",
     "posttest": "webpack --config webpack.config.js",
-    "lint": "eslint --ext .js,.vue src",
-    "lint:fix": "eslint --ext .js,.vue src --no-error-on-unmatched-pattern --fix"
+    "eslint": "eslint --ext .js,.vue src",
+    "prettier": "prettier --check src/**/*.{js,vue}",
+    "lint": "yarn prettier && yarn eslint",
+    "lint:fix": "yarn prettier --write && yarn eslint --fix"
   },
   "dependencies": {
     "@babel/runtime": "^7.16.3",
