@@ -2,7 +2,7 @@ const chalk = require("chalk");
 const msgPath = process.argv.slice(-1)[0];
 const msg = require("fs").readFileSync(msgPath, "utf-8").trim();
 
-const commitRE = /^(revert: )?(feat|fix|polish|docs|style|refactor|perf|test|workflow|ci|chore|types|build)(\(.+\))?: .{1,50}/;
+const commitRE = /^(revert: )?(((feat|fix|polish|docs|style|refactor|perf|test|workflow|ci|chore|types|build)(\(.+\))?: )|(Merge)).{1,50}/;
 
 if (!commitRE.test(msg)) {
 	console.log();
