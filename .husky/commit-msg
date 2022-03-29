@@ -1,4 +1,6 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+# GIT PARAMS does not get parameters, so use ${1} get get params
+# issue: https://github.com/typicode/husky/issues/113
 yarn commit-msg ${1}
