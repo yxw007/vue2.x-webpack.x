@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/yxw007/vue2.x-webpack/compare/v0.1.1...v1.0.0) (2023-12-15)
+
+
+### Bug Fixes
+
+* sourcemap not cleaned up after package ([af084d3](https://github.com/yxw007/vue2.x-webpack/commit/af084d354edb402f3d3c37666f0364ef61ab8fb2))
+
 ### 0.1.1 (2022-03-18)
 
 
